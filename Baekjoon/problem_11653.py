@@ -1,30 +1,24 @@
-def is_prime(n):
-    if n == 1:
-        return False
-    elif n == 4:
-        return False
-    i = 2
-    while i * i <= n:
-        if n % i == 0:
-            return False
-        i += 1
-    return True
+def get_eratos(list_max):
+    o_list = list(range(2,list_max+1))
+    p_list = []
+    while o_list[0]*o_list[0] <= list_max :
+        p_list.append(o_list[0])
+        o_list = list(filter(lambda x : x % o_list[0] != 0, o_list))
+    p_list += o_list
+    return p_list
 
-def next_prime(p):
-    if p == 2:
-        k = p + 1
+cond = get_eratos(3137)
+
+N = int(input())
+i = 0
+
+while N != 1:
+    if i == len(cond):
+        print(N)
+        break
+    if N % cond[i] == 0:
+        print(cond[i])
+        N //= cond[i]
     else:
-        k = p + 2
-    while is_prime(k) == False:
-        k += 2
-    return k
+        i += 1
 
-def factorise(n):
-    l = 2
-    while n != 1:
-        while n % l == 0:
-            print(l)
-            n /= l
-        l = next_prime(l)
-
-factorise(int(input()))
