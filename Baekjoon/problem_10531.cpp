@@ -96,8 +96,10 @@ int main() {
 	unsigned int count = 0;
 
 	for (i=0; i < M; i++) {
-		if ((int)(a[test[i]].real() + (a[test[i]].real() > 0 ? 0.5 : -0.5)) != 0)
-			count++;
+		if (test[i] <= 2*max_D) {
+			if ((int)(a[test[i]].real() + (a[test[i]].real() > 0 ? 0.5 : -0.5)) != 0)
+				count++;
+		}
 	}
 
 	std::cout << count << "\n";
